@@ -4,7 +4,7 @@ import { ThemeProvider } from "next-themes";
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-
+import DarkVeil from "@/components/DarkVeil";
 export const metadata: Metadata = {
   title: "AI Notes",
   description: "Intelligent notes powered by AI",
@@ -17,17 +17,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="bg-black">
+        {" "}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem={true}
         >
-          {" "}
-          <Navbar />
-          {children}
+          <div style={{ width: "100%", height: "600px", position: "relative" }}>
+            <DarkVeil />
+          </div>{" "}
+          <div className="absolute top-0 w-full">
+            {" "}
+            <Navbar />
+            {children}
+            <Footer />{" "}
+          </div>
         </ThemeProvider>
-        <Footer />
       </body>
     </html>
   );

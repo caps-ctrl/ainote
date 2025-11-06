@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="flex flex-col items-center justify-center text-center dark:bg-neutral-800 py-24 px-6">
+    <section className="flex flex-col items-center justify-center text-center  py-24 px-6">
       <h1 className="text-5xl font-extrabold mb-6 text-gray-900 dark:text-gray-300">
         Smart Notes with <span className="text-indigo-600">AI</span>
       </h1>
@@ -15,7 +15,7 @@ export default function HeroSection() {
 
       <div className="flex gap-4">
         <Button asChild size="lg">
-          <Link href="/notes">Start for Free</Link>
+          <Link href="/login">Start for Free</Link>
         </Button>
         <Button asChild variant="outline" size="lg">
           <Link href="#features">See features</Link>

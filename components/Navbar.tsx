@@ -1,11 +1,10 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "./theme-togle";
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-between items-center px-8 py-4 bg-white dark:bg-neutral-900 dark:border-b dark:border-indigo-600  shadow-sm">
+    <nav className="flex justify-between items-center px-8 py-4 ">
       <Link href="/" className="text-2xl font-bold text-indigo-600">
         AI Notes
       </Link>
