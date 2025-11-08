@@ -25,23 +25,23 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="flex min-h-screen items-center justify-center bg-neutral-100 dark:bg-neutral-900">
+      <div className="flex text-white min-h-screen items-center justify-center ">
         <form
           onSubmit={handleSubmit}
-          className="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-md w-80"
+          className="bg-neutral-800 p-6 rounded-xl shadow-md w-80"
         >
           <h1 className="text-xl font-semibold mb-4 text-center">Login</h1>
           <input
             type="email"
             placeholder="Email"
-            className="w-full mb-2 p-2 rounded bg-neutral-200 dark:bg-neutral-700"
+            className="w-full mb-2 p-2 rounded bg-neutral-700"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full mb-4 p-2 rounded bg-neutral-200 dark:bg-neutral-700"
+            className="w-full mb-4 p-2 rounded bg-neutral-700"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
@@ -56,6 +56,8 @@ export default function LoginPage() {
             </h2>
           </a>
         </form>{" "}
+
+        <div></div>
       </div>
     </>
   );

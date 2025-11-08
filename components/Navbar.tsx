@@ -10,19 +10,13 @@ export default function Navbar() {
       </Link>
 
       <div className="flex items-center  gap-4">
-        <Link
-          href="/#features"
-          className="text-gray-700 dark:text-gray-200 hover:dark:text-gray-400 hover:text-indigo-600"
-        >
+        <Link href="/features" className="text-gray-200 hover:text-gray-400">
           Features
         </Link>
-        <Link
-          href="/#about"
-          className="text-gray-700 dark:text-gray-200 hover:dark:text-gray-400 hover:text-indigo-600"
-        >
+        <Link href="/about" className="text-gray-200 hover:text-gray-400">
           About Project
         </Link>
-        <Button asChild>
+        <Button variant={"nav"} asChild>
           <Link href="/notes">Start now</Link>
         </Button>
       </div>

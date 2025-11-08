@@ -12,7 +12,7 @@ export default function HomePage() {
       <section className="flex  justify-between   border-b border-white shadow-[0_30px_40px_-40px_rgba(255,255,255,0.7)] pt-10  overflow-hidden ">
         <div className="max-w-[60%] text-center">
           <div className="p-10">
-            <h1 className="font-bold p-4 text-4xl">
+            <h1 className="font-bold text-gray-200 p-4 text-4xl">
               Perfect <span className="text-indigo-700">Design.</span>{" "}
               Effortless Thinking.
             </h1>
@@ -69,7 +69,7 @@ export default function HomePage() {
       </section>
 
       <section id="features" className="py-20   px-6 ">
-        <h2 className="text-3xl font-bold text-center mb-10 dark:text-white text-gray-900">
+        <h2 className="text-3xl font-bold text-center mb-10 text-white">
           What can AI Notes help you with?
         </h2>
 
@@ -97,7 +97,7 @@ export default function HomePage() {
 
       <section id="testimonials" className="py-10">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4 dark:text-white">
+          <h2 className="text-4xl font-bold mb-4 text-white">
             Loved by <span className="text-indigo-700">Students</span> and
             Creators
           </h2>
@@ -107,43 +107,60 @@ export default function HomePage() {
             effortlessly.
           </p>
 
-          <div className="flex">
-            <h2 className="text-4xl text-gray-100/60 font-bold mb-4 ">
-              Satisfied students:
-              <CountUp
-                from={0}
-                to={89}
-                separator=","
-                direction="up"
-                duration={1}
-                className="count-up-text text-indigo-700"
-              />
-              <span className="text-indigo-700">%</span>
-            </h2>
-            <h2 className="text-4xl text-gray-100/60 font-bold mb-4 ">
-              Accuracy rate
-              <CountUp
-                from={0}
-                to={99}
-                separator=","
-                direction="up"
-                duration={4}
-                className="count-up-text text-indigo-700"
-              />
-              <span className="text-indigo-700">%</span>
-            </h2>
-            <h2 className="text-4xl text-gray-100/60 font-bold mb-4 ">
-              Procesing Time
-              <CountUp
-                from={0}
-                to={30}
-                separator=","
-                direction="up"
-                duration={2}
-                className="count-up-text text-indigo-700"
-              />
-              <span className="text-indigo-700">s</span>
-            </h2>
+          <div className="flex flex-wrap justify-center gap-6 mt-8">
+            {/* Card 1 */}
+            <div className="bg-gradient-to-b from-neutral-900 to-neutral-800/80 border border-neutral-700/50 rounded-2xl px-8 py-6 flex flex-col items-center justify-center shadow-lg hover:shadow-indigo-700/60 transition">
+              <h2 className="text-xl text-gray-300 font-semibold mb-2">
+                Satisfied Students
+              </h2>
+              <div className="flex items-end gap-1">
+                <CountUp
+                  from={0}
+                  to={89}
+                  duration={2}
+                  className="text-5xl font-bold text-indigo-500 drop-shadow-sm"
+                />
+                <span className="text-3xl font-semibold text-indigo-500 mb-1">
+                  %
+                </span>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-gradient-to-b from-neutral-900 to-neutral-800/80 border border-neutral-700/50 rounded-2xl px-8 py-6 flex flex-col items-center justify-center shadow-lg hover:shadow-indigo-700/60 transition">
+              <h2 className="text-xl text-gray-300 font-semibold mb-2">
+                Accuracy Rate
+              </h2>
+              <div className="flex items-end gap-1">
+                <CountUp
+                  from={0}
+                  to={99}
+                  duration={3}
+                  className="text-5xl font-bold text-indigo-500 drop-shadow-sm"
+                />
+                <span className="text-3xl font-semibold text-indigo-500 mb-1">
+                  %
+                </span>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-gradient-to-b from-neutral-900 to-neutral-800/80 border border-neutral-700/50 rounded-2xl px-8 py-6 flex flex-col items-center justify-center shadow-lg hover:shadow-indigo-700/60 transition">
+              <h2 className="text-xl text-gray-300 font-semibold mb-2">
+                Processing Time
+              </h2>
+              <div className="flex items-end gap-1">
+                <CountUp
+                  from={0}
+                  to={30}
+                  duration={2}
+                  className="text-5xl font-bold text-indigo-500 drop-shadow-sm"
+                />
+                <span className="text-3xl font-semibold text-indigo-500 mb-1">
+                  s
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

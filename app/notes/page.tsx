@@ -20,10 +20,10 @@ export default function NotesPage() {
   const [activeNote, setActiveNote] = useState<number>(1);
 
   return (
-    <div className="justify-center flex p-4 items-center">
+    <div className="justify-center text-white flex p-4 items-center">
       <div className="flex w-[80%] min-h-[80vh] ">
         {/* Sidebar */}
-        <aside className="w-64 bg-black/80 rounded-l-2xl border-r p-4 flex flex-col">
+        <aside className="w-64 bg-black/80 rounded-l-2xl  p-4 flex flex-col">
           <h2 className="text-lg font-semibold mb-4">Your notes</h2>
           <div className="flex-1 overflow-y-auto space-y-2">
             {notes.map((note) => (
@@ -32,8 +32,8 @@ export default function NotesPage() {
                 onClick={() => setActiveNote(note.id)}
                 className={`p-3 rounded-lg  cursor-pointer  ${
                   note.id === activeNote
-                    ? "bg-indigo-100 dark:text-indigo-800"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                    ? "text-white bg-indigo-700"
+                    : "hover:bg-gray-800"
                 }`}
               >
                 <p className="font-medium">{note.title}</p>
@@ -58,7 +58,7 @@ export default function NotesPage() {
         </aside>
 
         {/* Main editor */}
-        <main className="flex-1 p-6 rounded-r-2xl  dark:border-l dark:border-indigo-600 bg-black/80">
+        <main className="flex-1 p-6 rounded-r-2xl  border-l border-indigo-600 bg-black/80">
           <NoteEditor
             note={notes.find((n) => n.id === activeNote)!}
             onChange={(updatedNote) => {

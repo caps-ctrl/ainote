@@ -43,7 +43,7 @@ export default function NoteEditor({ note, onChange }: NoteEditorProps) {
         placeholder="Zacznij pisać swoją notatkę..."
       />
 
-      <div className="flex justify-end mt-4 gap-2">
+      <div className="flex justify-end mt-4 text-black gap-2">
         <Button
           variant="outline"
           onClick={() => alert("Funkcja AI wkrótce 😉")}

@@ -39,8 +39,8 @@ export default function FeatureCard({
       className="p-6  shadow-sm rounded-2xl flex flex-col border-1 border-indigo-700 items-center text-center"
     >
       <div className="text-indigo-600 text-4xl mb-4">{icon}</div>
-      <h3 className="font-semibold text-lg mb-2">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm">{desc}</p>
+      <h3 className="font-semibold text-white text-lg mb-2">{title}</h3>
+      <p className="text-gray-400 text-sm">{desc}</p>
     </motion.div>
   );
 }
