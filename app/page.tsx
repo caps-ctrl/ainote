@@ -1,6 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import FeatureCard from "@/components/FeatureCard";
-import { Brain, Sparkles, FileText } from "lucide-react";
+import { Brain, Sparkles, FileText, LayoutGrid, Tag } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-togle";
 import CardSwap, { Card } from "@/components/CardSwap";
 import CountUp from "@/components/CountUp";
@@ -37,17 +37,99 @@ export default function HomePage() {
             delay={5000}
             pauseOnHover={false}
           >
-            <Card></Card>
-            <Card></Card>
+            {/* --- Karta 1: Edytor z pomocą AI (Dark Mode) --- */}
+            <Card>
+              <div className="flex h-full flex-col p-6 bg-stone-900 rounded-2xl border border-neutral-700">
+                <input
+                  type="text"
+                  placeholder="Tytuł notatki..."
+                  defaultValue="Spotkanie marketingowe Q4"
+                  className="text-lg font-semibold bg-transparent border-b border-neutral-600 pb-2 mb-4 text-white placeholder-neutral-500 focus:outline-none"
+                />
+                <textarea
+                  placeholder="Zacznij pisać..."
+                  className="flex-1 bg-transparent text-neutral-300 text-sm resize-none focus:outline-none"
+                  defaultValue="Omówiliśmy strategię na nowy kwartał. Główne punkty to: zwiększenie budżetu na social media, nowa kampania wideo oraz analiza działań konkurencji. Należy przygotować raport SEO."
+                />
+                <div className="mt-4 p-3 bg-indigo-900/30 rounded-lg border border-indigo-700/50">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-4 h-4 text-indigo-400" />
+                    <h3 className="text-sm font-semibold text-indigo-300">
+                      Podsumowanie AI
+                    </h3>
+                  </div>
+                  <p className="text-xs text-neutral-300">
+                    Kluczowe tematy: wzrost budżetu social media, nowa kampania
+                    wideo i analiza konkurencji. Zadanie: raport SEO.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* --- Karta 2: Widok organizacji / tagów --- */}
+            <Card>
+              <div className="flex h-full flex-col p-6 bg-neutral-800 rounded-2xl border border-neutral-700">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-lg font-semibold text-white">
+                    Wszystkie Notatki
+                  </h2>
+                  <LayoutGrid className="w-5 h-5 text-neutral-400" />
+                </div>
+                <div className="space-y-3">
+                  {/* Notatka 1 */}
+                  <div className="p-3 bg-neutral-700/60 rounded-lg">
+                    <h3 className="font-medium text-white">Pomysły na apkę</h3>
+                    <p className="text-xs text-neutral-400 truncate">
+                      Integracja z kalendarzem, powiadomienia...
+                    </p>
+                    <div className="mt-2 flex gap-2">
+                      <span className="text-xs bg-blue-600/50 text-blue-200 px-2 py-0.5 rounded-full">
+                        #Projekt
+                      </span>
+                    </div>
+                  </div>
+                  {/* Notatka 2 */}
+                  <div className="p-3 bg-neutral-700/60 rounded-lg">
+                    <h3 className="font-medium text-white">Ważne linki</h3>
+                    <p className="text-xs text-neutral-400 truncate">
+                      Dokumentacja API, design system...
+                    </p>
+                    <div className="mt-2 flex gap-2">
+                      <span className="text-xs bg-green-600/50 text-green-200 px-2 py-0.5 rounded-full">
+                        #Praca
+                      </span>
+                    </div>
+                  </div>
+                  {/* Notatka 3 */}
+                  <div className="p-3 bg-neutral-700/60 rounded-lg">
+                    <h3 className="font-medium text-white">
+                      Przepis na ciasto
+                    </h3>
+                    <p className="text-xs text-neutral-400 truncate">
+                      Mąka, cukier, jajka, proszek do pieczenia...
+                    </p>
+                    <div className="mt-2 flex gap-2">
+                      <span className="text-xs bg-yellow-600/50 text-yellow-200 px-2 py-0.5 rounded-full">
+                        #Prywatne
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* --- Karta 3: Twoja istniejąca karta (UI Aplikacji) --- */}
             <Card>
               <div className="flex h-full ">
                 {/* Sidebar */}
-                <aside className="w-43 bg-white dark:bg-neutral-800 border-r rounded-l-2xl p-4 flex flex-col">
-                  <h2 className="text-lg font-semibold mb-4">Your notes</h2>
+                <aside className="w-43 bg-neutral-800 border-r rounded-l-2xl p-4 flex flex-col">
+                  <h2 className="text-lg text-white font-semibold mb-4">
+                    Your notes
+                  </h2>
                   <div className="flex-1 overflow-y-auto space-y-2">
                     <div>
                       <p className="font-medium">First ai notes</p>
-                      <p className="font-medium rounded dark:bg-indigo-700 dark:text-white">
+                      <p className="font-medium rounded bg-indigo-700 text-white">
                         To do List
                       </p>
                       <p className="font-medium">Shoping list</p>
@@ -56,7 +138,7 @@ export default function HomePage() {
                 </aside>
 
                 {/* Main editor */}
-                <main className="flex-1 p-6 bg-neutral-50 dark:border-l dark:border-indigo-600 dark:bg-stone-900">
+                <main className="flex-1 p-6  border-l text-white bg-stone-900">
                   Read one chapter of a good book . Go for a 30-minute walk .
                   Clean your desk . Message an old friend just to say hi. Drink
                   enough water. learning something new. Stretch or do light
