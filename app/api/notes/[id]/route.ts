@@ -1,29 +1,27 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
 const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
 
-interface Params {
-  id: string;
-}
-
-export async function PUT(req: Request, { params }: { params: Params }) {
-  const { id } = await params;
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
-    const cookieStore = await cookies(); // ✅ używamy await
-    const token = cookieStore.get("token")?.value; // teraz działa
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
 
-    if (!token)
+    if (!token) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    }
 
     const decoded = jwt.verify(token, JWT_SECRET) as { id: number };
-
     const { title, content } = await req.json();
 
     const note = await prisma.note.updateMany({
-      where: { id: parseInt(id), userId: decoded.id },
+      where: { id: parseInt(params.id), userId: decoded.id },
       data: { title, content },
     });
 
@@ -36,13 +34,17 @@ export async function PUT(req: Request, { params }: { params: Params }) {
   }
 }
 
-export async function DELETE(req: Request, { params }: { params: Params }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get("token")?.value;
 
-    if (!token)
+    if (!token) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    }
 
     const decoded = jwt.verify(token, JWT_SECRET) as { id: number };
 
