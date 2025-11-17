@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-
+export const runtime = "nodejs";
 const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
 
 export async function PUT(
@@ -10,7 +10,7 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies(); // ✅ tutaj jest await
     const token = cookieStore.get("token")?.value;
 
     if (!token) {
@@ -25,7 +25,7 @@ export async function PUT(
       data: { title, content },
     });
 
-    return NextResponse.json(note);
+    return NextResponse.json({ note });
   } catch (err) {
     return NextResponse.json(
       { error: "Failed to update note" },
@@ -39,7 +39,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies(); // ✅ tutaj też await
     const token = cookieStore.get("token")?.value;
 
     if (!token) {
