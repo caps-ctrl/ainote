@@ -4,6 +4,7 @@ import { Brain, Sparkles, FileText, LayoutGrid, Tag } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-togle";
 import CardSwap, { Card } from "@/components/CardSwap";
 import CountUp from "@/components/CountUp";
+
 export default function HomePage() {
   return (
     <>

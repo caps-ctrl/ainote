@@ -1,71 +1,96 @@
 "use client";
+
 import {
   createContext,
   useContext,
-  useEffect,
   useState,
+  useEffect,
   ReactNode,
 } from "react";
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
-
 interface AuthContextType {
-  user: User | null;
+  isLoggedIn: boolean;
+  user: { id: number; email: string } | null;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  loading: true,
-  login: async () => {},
-  logout: () => {},
-});
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<{ id: number; email: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Sprawdzenie zalogowania przy starcie
+  // 🔥 Sprawdzamy czy użytkownik ma token (cookie)
   useEffect(() => {
-    const fetchUser = async () => {
+    const checkSession = async () => {
       try {
-        const res = await fetch("/api/auth/me");
-        if (res.ok) setUser(await res.json());
-      } catch {
+        const res = await fetch("/api/me"); // route który zwraca dane usera
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data.user);
+          setIsLoggedIn(true);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
       } finally {
         setLoading(false);
       }
     };
-    fetchUser();
+
+    checkSession();
   }, []);
 
+  // 🔥 Logowanie
   const login = async (email: string, password: string) => {
-    const res = await fetch("/api/auth/login", {
+    setLoading(true);
+
+    const res = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
-    if (!res.ok) throw new Error("Login failed");
+
     const data = await res.json();
-    setUser(data);
+
+    if (res.ok) {
+      setIsLoggedIn(true);
+      setUser(data.user);
+      setLoading(false);
+      return true;
+    }
+
+    setLoading(false);
+    return false;
   };
 
+  // 🔥 Wylogowanie
   const logout = async () => {
-    await fetch("/api/auth/logout", { method: "POST" });
+    await fetch("/api/logout", { method: "POST" });
+
     setUser(null);
+    setIsLoggedIn(false);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        user,
+        login,
+        logout,
+        loading,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
+  return ctx;
+};
