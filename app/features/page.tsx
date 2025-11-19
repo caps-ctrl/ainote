@@ -1,5 +1,5 @@
 "use client";
-
+import { useAuth } from "../context/AuthContext";
 import { motion } from "framer-motion";
 import { Sparkles, Brain, Zap, Shield, Layers } from "lucide-react";
 
@@ -32,6 +32,7 @@ const features = [
 ];
 
 export default function FeaturesPage() {
+  const { isLoggedIn } = useAuth();
   return (
     <div className="min-h-screen bg-black/70 m-10 rounded-2xl text-gray-100 flex flex-col items-center px-6 py-20">
       {/* Nagłówek */}
@@ -83,12 +84,16 @@ export default function FeaturesPage() {
         className="mt-20 text-center"
       >
         <p className="text-gray-500 mb-4">Ready to experience the future?</p>
-        <a
-          href="/register"
-          className="px-6 py-3 bg-indigo-600 rounded-xl hover:bg-indigo-700 transition font-medium"
-        >
-          Get Started
-        </a>
+        {isLoggedIn ? (
+          <span />
+        ) : (
+          <a
+            href="/register"
+            className="px-6 py-3 bg-indigo-600 rounded-xl hover:bg-indigo-700 transition font-medium"
+          >
+            Get Started
+          </a>
+        )}
       </motion.div>
     </div>
   );

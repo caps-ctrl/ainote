@@ -1,7 +1,9 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
+import { useAuth } from "@/app/context/AuthContext";
 export default function HeroSection() {
+  const { isLoggedIn } = useAuth();
   return (
     <section className="flex flex-col items-center justify-center text-center  py-24 px-6">
       <h1 className="text-5xl font-extrabold mb-6 text-gray-300">
@@ -14,9 +16,15 @@ export default function HeroSection() {
       </p>
 
       <div className="flex gap-4">
-        <Button asChild size="lg">
-          <Link href="/login">Start for Free</Link>
-        </Button>
+        {isLoggedIn ? (
+          <Button asChild size="lg">
+            <Link href="/notes">Check your notes</Link>
+          </Button>
+        ) : (
+          <Button asChild size="lg">
+            <Link href="/login">Start for Free</Link>
+          </Button>
+        )}
         <Button asChild variant="outline" size="lg">
           <Link href="features">See features</Link>
         </Button>

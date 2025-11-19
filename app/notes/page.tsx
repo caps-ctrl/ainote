@@ -75,7 +75,7 @@ export default function NotesPage() {
             ))}
           </div>
 
-          <Button className="mt-4" onClick={addNote}>
+          <Button className="mt-4 cursor-pointer" onClick={addNote}>
             + New note
           </Button>
         </aside>
