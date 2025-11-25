@@ -12,13 +12,13 @@ export default function LoginPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    try {
-      await login(form.email, form.password); // ✅ korzystamy z AuthContext
-      setMessage("Zalogowano!");
-      setTimeout(() => router.push("/notes"), 800); // przekierowanie po sukcesie
-    } catch (err: any) {
-      setMessage(err.message || "Błąd logowania");
+    const success = await login(form.email, form.password);
+    if (!success) {
+      setMessage("Niepoprawny email lub hasło");
+      return;
     }
+    setMessage("Zalogowano!");
+    setTimeout(() => router.push("/notes"), 800);
   }
 
   return (

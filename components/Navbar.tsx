@@ -2,8 +2,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/app/context/AuthContext";
-
+import { useRouter } from "next/navigation";
 export default function Navbar() {
+  const router = useRouter();
   const { isLoggedIn, logout } = useAuth();
 
   return (
@@ -22,10 +23,15 @@ export default function Navbar() {
           About Project
         </Link>
 
-        {/* Przycisk skrajnie na prawo */}
         <div className="ml-auto">
           {isLoggedIn ? (
-            <Button variant={"nav"} onClick={logout}>
+            <Button
+              variant={"nav"}
+              onClick={() => {
+                logout();
+                setTimeout(() => router.push("/"), 800);
+              }}
+            >
               Logout
             </Button>
           ) : (

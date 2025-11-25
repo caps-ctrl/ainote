@@ -27,13 +27,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const res = await fetch("/api/me"); // route który zwraca dane usera
+        const res = await fetch("/api/me");
         if (res.ok) {
           const data = await res.json();
-          setUser(data.user);
+          setUser(data); // backend zwraca od razu user
           setIsLoggedIn(true);
+        } else {
+          setUser(null);
+          setIsLoggedIn(false);
         }
       } catch (err) {
+        setUser(null);
         setIsLoggedIn(false);
       } finally {
         setLoading(false);
